@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:perpus_ocr/pages/checkout.dart';
 
 class FormPage extends StatefulWidget {
-  final String concertName;
+  final String perpusName;
   final String ocrResult;
 
-  FormPage({required this.concertName, required this.ocrResult});
+  FormPage({required this.perpusName, required this.ocrResult});
 
   @override
   _FormPageState createState() => _FormPageState();
@@ -346,7 +346,7 @@ void initState() {
                   context,
                   MaterialPageRoute(
                     builder: (context) => CheckoutPage(
-                      concertName: widget.concertName,
+                      perpusName: widget.perpusName,
                       selectedPaymentMethod: '',
                       formData: formData, // Pass formData to CheckoutPage
                     ),

@@ -11,9 +11,9 @@ import 'dart:convert';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 class ScanPage extends StatefulWidget {
-  final String concertName;
+  final String perpusName;
 
-  ScanPage({required this.concertName});
+  ScanPage({required this.perpusName});
 
   @override
   _ScanPageState createState() => _ScanPageState();
@@ -245,7 +245,7 @@ class _ScanPageState extends State<ScanPage> {
                           context,
                           MaterialPageRoute(
                             builder: (context) => FormPage(
-                              concertName: widget.concertName,
+                              perpusName: widget.perpusName,
                               ocrResult: recognizedText,
                             ),
                           ),
@@ -295,7 +295,7 @@ class _ScanPageState extends State<ScanPage> {
                             context,
                             MaterialPageRoute(
                               builder: (context) => FormPage(
-                                concertName: widget.concertName,
+                                perpusName: widget.perpusName,
                                 ocrResult: recognizedText,
                               ),
                             ),

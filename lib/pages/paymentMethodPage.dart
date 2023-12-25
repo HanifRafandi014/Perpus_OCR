@@ -3,11 +3,11 @@ import 'package:perpus_ocr/pages/form_page.dart';
 import 'checkout.dart';
 
 class PaymentMethodPage extends StatefulWidget {
-  final String concertName;
+  final String perpusName;
   final FormData formData;
 
   PaymentMethodPage({
-    required this.concertName,
+    required this.perpusName,
     required this.formData,
   });
   @override
@@ -219,7 +219,7 @@ class _PaymentMethodPageState extends State<PaymentMethodPage> {
                   context,
                   MaterialPageRoute(
                       builder: (context) => CheckoutPage(
-                            concertName: widget.concertName,
+                            perpusName: widget.perpusName,
                             selectedPaymentMethod: selectedPaymentMethod,
                             formData: widget.formData,
                           )),

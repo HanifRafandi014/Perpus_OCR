@@ -29,7 +29,7 @@ class StartApp extends StatelessWidget {
                 children: [
                   // Title
                   Text(
-                    'GoConcert',
+                    'PerpusNas',
                     style: TextStyle(
                       fontFamily: 'Poppins',
                       fontSize: 50,

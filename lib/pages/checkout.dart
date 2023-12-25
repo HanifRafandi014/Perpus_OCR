@@ -5,12 +5,12 @@ import 'package:perpus_ocr/pages/payment_page.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class CheckoutPage extends StatefulWidget {
-  final String concertName;
+  final String perpusName;
   final String selectedPaymentMethod;
   final FormData formData;
 
   CheckoutPage(
-      {required this.concertName,
+      {required this.perpusName,
       required this.selectedPaymentMethod,
       required this.formData});
 
@@ -347,7 +347,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
                     context,
                     MaterialPageRoute(
                         builder: (context) => PaymentMethodPage(
-                            concertName: widget.concertName,
+                            perpusName: widget.perpusName,
                             formData: widget.formData)),
                   );
                 },
@@ -377,22 +377,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
             right: 20.0,
             child: ElevatedButton(
               onPressed: () async {
-                // Create a new document in Firestore
-                // final payments = {
-                //   'concertName': widget.concertName,
-                //   'selectedCategory': categoryNames[selectedCat],
-                //   'price': prices[selectedCat],
-                //   'formData': {
-                //     'nik': widget.formData.nik,
-                //     'name': widget.formData.name,
-                //     'address': widget.formData.address,
-                //   },
-                //   'paymentMethod': widget.selectedPaymentMethod,
-                // };
-
-                // await db.collection('payments').add(payments);
-
-                // Navigate to the PaymentPage
+                
                 Navigator.push(
                   context,
                   MaterialPageRoute(
@@ -402,7 +387,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
                       price: prices[selectedCat],
                       formData: widget.formData,
                       paymentMethod: widget.selectedPaymentMethod,
-                      concertName: widget.concertName,
+                      perpusName: widget.perpusName,
                     ),
                   ),
                 );

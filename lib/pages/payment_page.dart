@@ -4,14 +4,14 @@ import 'package:barcode_widget/barcode_widget.dart';
 
 
 class PaymentPage extends StatefulWidget {
-  final String concertName;
+  final String perpusName;
   final String selectedCat;
   final String price;
   final FormData formData;
   final String paymentMethod;
 
   PaymentPage({
-    required this.concertName,
+    required this.perpusName,
     required this.selectedCat,
     required this.price,
     required this.formData,
@@ -227,7 +227,7 @@ class _PaymentPageState extends State<PaymentPage> {
                     children: [
                       Flexible(
                         child: Text(
-                          'Concert Name',
+                          'Perpus Name',
                           style: TextStyle(
                             fontSize: 16.0,
                             fontWeight: FontWeight.bold,
@@ -236,7 +236,7 @@ class _PaymentPageState extends State<PaymentPage> {
                       ),
                       Flexible(
                         child: Text(
-                          '${widget.concertName}',
+                          '${widget.perpusName}',
                           style: TextStyle(
                             fontSize: 14.0,
                             fontWeight: FontWeight.bold,

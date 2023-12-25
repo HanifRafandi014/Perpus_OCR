@@ -12,30 +12,30 @@ class DashboardPage extends State<DashboardWidget> {
   int _currentPage = 0;
   String _search = '';
   String _selectedFilter = 'All';
-  List<Concert> _concerts = [
-    Concert('NewJeans.png', 'NewJeans', '14 January 2024',
+  List<Perpus> _perpuss = [
+    Perpus('NewJeans.png', 'NewJeans', '14 January 2024',
         'Jakarta International Stadium', 'K-Pop'),
-    Concert('LeSserafim.png', 'Le Sserafim', '24 March 2024',
+    Perpus('LeSserafim.png', 'Le Sserafim', '24 March 2024',
         'Stadion Gelora Bung Karno', 'K-Pop'),
-    Concert('coldplay.jpeg', 'Coldplay', '15 November 2023',
+    Perpus('coldplay.jpeg', 'Coldplay', '15 November 2023',
         'Stadion Gelora Bung Karno', 'Pop'),
-    Concert('bmth.jpeg', 'Bring Me The Horizon', '10 November 2023',
+    Perpus('bmth.jpeg', 'Bring Me The Horizon', '10 November 2023',
         'Beach City, Ancol, Jakarta', 'Rock'),
-    // Add more concerts as needed
+    // Add more perpuss as needed
   ];
-  List<Concert> _filteredConcerts = [];
+  List<Perpus> _filterPerpuss = [];
 
-  void _filterConcerts() {
-    _filteredConcerts = _filterConcertList(_concerts, _search, _selectedFilter);
+  void _filterPerpuss() {
+    _filterPerpuss = _filterPerpusList(_perpuss, _search, _selectedFilter);
   }
 
-  List<Concert> _filterConcertList(
-      List<Concert> concerts, String search, String selectedFilter) {
-    return concerts
-        .where((concert) => (concert.name
+  List<Perpus> _filterPerpusList(
+      List<Perpus> perpuss, String search, String selectedFilter) {
+    return perpuss
+        .where((perpus) => (perpus.name
                 .toLowerCase()
                 .contains(search.toLowerCase()) &&
-            (selectedFilter == 'All' || concert.category == selectedFilter)))
+            (selectedFilter == 'All' || perpus.category == selectedFilter)))
         .toList();
   }
 
@@ -43,13 +43,13 @@ class DashboardPage extends State<DashboardWidget> {
   void initState() {
     super.initState();
     _selectedFilter = 'All';
-    _filterConcerts();
+    _filterPerpuss();
   }
 
   Widget build(BuildContext context) {
-    // List<Concert> _filteredConcerts = _concerts
-    //     .where((concert) =>
-    //         concert.name.toLowerCase().contains(_search.toLowerCase()))
+    // List<Perpus> _filteredPerpuss = _perpuss
+    //     .where((perpus) =>
+    //         perpus.name.toLowerCase().contains(_search.toLowerCase()))
     //     .toList();
     return Scaffold(
       body: Stack(
@@ -96,7 +96,7 @@ class DashboardPage extends State<DashboardWidget> {
                         SizedBox(width: 10.0),
                         // App Name
                         Text(
-                          'GoConcert',
+                          'PerpusNas',
                           style: TextStyle(
                             fontSize: 24.0,
                             fontFamily: 'Poppins',
@@ -168,7 +168,7 @@ class DashboardPage extends State<DashboardWidget> {
                       onChanged: (value) {
                         setState(() {
                           _search = value;
-                          _filterConcerts(); // Add this line
+                          _filterPerpuss(); // Add this line
                         });
                       },
                       style: TextStyle(
@@ -219,7 +219,7 @@ class DashboardPage extends State<DashboardWidget> {
                       _buildFilterButton('All', _selectedFilter == 'All', () {
                         setState(() {
                           _selectedFilter = 'All';
-                          _filterConcerts();
+                          _filterPerpuss();
                         });
                       }),
                       SizedBox(width: 10.0),
@@ -228,7 +228,7 @@ class DashboardPage extends State<DashboardWidget> {
                           () {
                         setState(() {
                           _selectedFilter = 'K-Pop';
-                          _filterConcerts();
+                          _filterPerpuss();
                         });
                       }),
                       SizedBox(width: 10.0),
@@ -236,7 +236,7 @@ class DashboardPage extends State<DashboardWidget> {
                       _buildFilterButton('Pop', _selectedFilter == 'Pop', () {
                         setState(() {
                           _selectedFilter = 'Pop';
-                          _filterConcerts();
+                          _filterPerpuss();
                         });
                       }),
                       SizedBox(width: 10.0),
@@ -244,7 +244,7 @@ class DashboardPage extends State<DashboardWidget> {
                       _buildFilterButton('Rock', _selectedFilter == 'Rock', () {
                         setState(() {
                           _selectedFilter = 'Rock';
-                          _filterConcerts();
+                          _filterPerpuss();
                         });
                       }),
                     ],
@@ -263,15 +263,15 @@ class DashboardPage extends State<DashboardWidget> {
               height: 480.0, // Adjust the height as needed
               child: ListView.builder(
                 scrollDirection: Axis.vertical,
-                itemCount: _filteredConcerts.length,
+                itemCount: _filteredPerpuss.length,
                 itemBuilder: (context, index) {
                   return Column(
                     children: [
-                      _buildConcertCard(
-                        _filteredConcerts[index].image,
-                        _filteredConcerts[index].name,
-                        _filteredConcerts[index].date,
-                        _filteredConcerts[index].location,
+                      _buildPerpusCard(
+                        _filteredPerpuss[index].image,
+                        _filteredPerpuss[index].name,
+                        _filteredPerpuss[index].date,
+                        _filteredPerpuss[index].location,
                       ),
                       SizedBox(height: 30.0), // Add padding between cards
                     ],
@@ -353,8 +353,8 @@ class DashboardPage extends State<DashboardWidget> {
     );
   }
 
-// Helper method to build concert cards
-  Widget _buildConcertCard(
+// Helper method to build perpus cards
+  Widget _buildPerpusCard(
     String imagePath,
     String title,
     String date,
@@ -370,7 +370,7 @@ class DashboardPage extends State<DashboardWidget> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          // Concert Image
+          // Perpus Image
           Container(
             height: 175.0,
             decoration: BoxDecoration(
@@ -382,11 +382,11 @@ class DashboardPage extends State<DashboardWidget> {
             ),
           ),
           SizedBox(height: 10.0),
-          // Concert Details in a Row
+          // Perpus Details in a Row
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              // Concert Title, Date, and Location
+              // Perpus Title, Date, and Location
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -424,7 +424,7 @@ class DashboardPage extends State<DashboardWidget> {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => TicketDetails(concertName: title),
+                      builder: (context) => TicketDetails(perpusName: title),
                     ),
                   );
                 },
@@ -458,12 +458,12 @@ class DashboardPage extends State<DashboardWidget> {
   }
 }
 
-class Concert {
+class Perpus {
   final String image;
   final String name;
   final String date;
   final String location;
   final String category;
 
-  Concert(this.image, this.name, this.date, this.location, this.category);
+  Perpus(this.image, this.name, this.date, this.location, this.category);
 }

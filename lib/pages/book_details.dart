@@ -4,7 +4,7 @@ import 'package:perpus_ocr/pages/dashboard.dart';
 import 'package:perpus_ocr/pages/scan_page.dart';
 
 // Kelas untuk merepresentasikan data konser
-class Concert {
+class Perpus {
   final String category;
   final String title;
   final String price;
@@ -13,7 +13,7 @@ class Concert {
   final String eventDetails;
   final String banner;
 
-  Concert({
+  Perpus({
     required this.category,
     required this.title,
     required this.price,
@@ -25,9 +25,9 @@ class Concert {
 }
 
 class TicketDetails extends StatelessWidget {
-  final String concertName;
-  final List<Concert> concerts = [
-    Concert(
+  final String perpusName;
+  final List<Perpus> perpuss = [
+    Perpus(
       category: 'K-Pop',
       title: 'NewJeans',
       price: 'Rp5.000.000 / person',
@@ -37,7 +37,7 @@ class TicketDetails extends StatelessWidget {
           'Kami dengan senang hati mengumumkan bahwa konser pertama NEWJEANS akan diadakan di Indonesia di Jakarta International Stadium pada 15 Januari 2024. Penggemar dapat membeli tiket presale mulai 1 Desember 2023.',
       banner: 'NewJeans-banner.png',
     ),
-    Concert(
+    Perpus(
       category: 'K-Pop',
       title: 'Le Sserafim',
       price: 'Rp4.500.000 / person',
@@ -47,7 +47,7 @@ class TicketDetails extends StatelessWidget {
           'Grup K-Pop Le Sserafim konser di Jakarta pada 24 March 2024. Konser tersebut digelar di Stadion Gelora Bung Karno. Dikutip Hallyu Idol, Le Sserafim beranggota lima personil naungan agensi Source Music. Debut mereka pada 2 Mei 2022 dengan mini album pertama Fearless.',
       banner: 'LeSserafim-banner.png',
     ),
-    Concert(
+    Perpus(
       category: 'Pop',
       title: 'Coldplay',
       price: 'Rp2.500.000 / person',
@@ -57,7 +57,7 @@ class TicketDetails extends StatelessWidget {
           'Coldplay, band asal Inggris yang dibentuk pada 1996 di London, akan menyelenggarakan konser di Stadion Utama Gelora Bung Karno (GBK) Jakarta besok, Rabu, 15 November 2023. Konser mereka kali ini bertajuk Music of The Spheres World Tour 2023.',
       banner: 'Coldplay-banner.png',
     ),
-    Concert(
+    Perpus(
       category: 'Rock',
       title: 'Bring Me The Horizon',
       price: 'Rp5.500.000 / person',
@@ -69,14 +69,14 @@ class TicketDetails extends StatelessWidget {
     ),
   ];
 
-  TicketDetails({required this.concertName});
+  TicketDetails({required this.perpusName});
 
   @override
   Widget build(BuildContext context) {
     // Mencari konser berdasarkan nama
-    Concert? selectedConcert = concerts.firstWhere(
-      (concert) => concert.title == concertName,
-      orElse: () => Concert(
+    Perpus? selectedPerpus = perpuss.firstWhere(
+      (perpus) => perpus.title == perpusName,
+      orElse: () => Perpus(
         category: '',
         title: '',
         price: '',
@@ -93,9 +93,9 @@ class TicketDetails extends StatelessWidget {
           // Container untuk latar belakang
           Container(
             alignment: Alignment.topCenter,
-            child: selectedConcert != null
+            child: selectedPerpus != null
                 ? Image.asset(
-                    'assets/img/${selectedConcert!.banner}',
+                    'assets/img/${selectedPerpus!.banner}',
                     fit: BoxFit.cover,
                     width: MediaQuery.of(context).size.width,
                   )
@@ -191,23 +191,23 @@ class TicketDetails extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   _buildInfoRow(
-                      selectedConcert.category, 12.0, FontWeight.normal),
-                  _buildSectionTitle(selectedConcert.title),
-                  _buildInfoRow(selectedConcert.price, 16.0, FontWeight.bold),
+                      selectedPerpus.category, 12.0, FontWeight.normal),
+                  _buildSectionTitle(selectedPerpus.title),
+                  _buildInfoRow(selectedPerpus.price, 16.0, FontWeight.bold),
                   _buildInfoRowWithIcon(
-                    selectedConcert.date,
+                    selectedPerpus.date,
                     FontAwesomeIcons.calendar,
                     12.0,
                     FontWeight.normal,
                   ),
                   _buildInfoRowWithIcon(
-                    selectedConcert.location,
+                    selectedPerpus.location,
                     FontAwesomeIcons.map,
                     12.0,
                     FontWeight.bold,
                   ),
                   _buildSectionTitle('Event Details', fontSize: 16.0),
-                  _buildSectionContent(selectedConcert.eventDetails),
+                  _buildSectionContent(selectedPerpus.eventDetails),
                 ],
               ),
             ),
@@ -231,8 +231,8 @@ class TicketDetails extends StatelessWidget {
                           context,
                           MaterialPageRoute(
                             builder: (context) => ScanPage(
-                                concertName:
-                                    concertName), // Ganti dengan halaman tujuan untuk membeli tiket
+                                perpusName:
+                                    perpusName), // Ganti dengan halaman tujuan untuk membeli tiket
                           ),
                         );
                       },
@@ -243,7 +243,7 @@ class TicketDetails extends StatelessWidget {
                         ),
                       ),
                       child: Text(
-                        'Buy a Ticket', // Teks tombol "Beli Tiket"
+                        'Rent a Book', // Teks tombol "Sewa Buku"
                         style: TextStyle(
                           color: Colors.black,
                           fontWeight: FontWeight.bold,
