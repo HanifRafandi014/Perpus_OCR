@@ -23,10 +23,10 @@ class DashboardPage extends State<DashboardWidget> {
         'Beach City, Ancol, Jakarta', 'Rock'),
     // Add more perpuss as needed
   ];
-  List<Perpus> _filterPerpuss = [];
+  List<Perpus> _filteredPerpuss = [];
 
   void _filterPerpuss() {
-    _filterPerpuss = _filterPerpusList(_perpuss, _search, _selectedFilter);
+    _filteredPerpuss = _filterPerpusList(_perpuss, _search, _selectedFilter);
   }
 
   List<Perpus> _filterPerpusList(
